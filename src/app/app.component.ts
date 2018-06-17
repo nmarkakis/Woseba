@@ -1,10 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app';
+  visual = "";
+  lang = "";
+  @Input() change: any;
+
+  constructor() {}  
+
+  ngOnInit() {
+    
+  }
+
+  ngOnChange() {
+    // this.getLang();
+    console.log(this.lang);
+  }
+
+  getLang(){
+    this.lang = localStorage.getItem("lang");
+    console.log("this.lang" + this.lang);
+  }
+
+  changeLang(lang){
+    console.log("lang =  "+lang);
+    localStorage.setItem("lang",lang);
+  } 
+
 }
