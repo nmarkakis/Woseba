@@ -19,7 +19,7 @@ export class AppComponent extends VisualService {
 
   ngOnInit() {
     console.log('Default Lang: ' + this.lang);
-    this.getVisuals();
+    // this.getVisuals();
   }
 
   ngOnChange() {
@@ -40,6 +40,8 @@ export class AppComponent extends VisualService {
     localStorage.setItem("visuals", JSON.stringify(this.visuals));
     // this.visuals = this.getLangs();
     console.log("aaaaa"+JSON.stringify(this.visuals));
+    this.title = localStorage.getItem('lang');    
+    // this.title = localStorage.getItem('visuals');    
     // this.getVisuals();
   } 
 
