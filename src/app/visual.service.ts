@@ -4,19 +4,22 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class VisualService {
-    private langs = [];
+    private langs = {};
     private langDefault:number = 1;
+    configUrl = 'visuals.json';
 
-    constructor(private _http: Http) { }
+    constructor(private http: Http) { }
 
     public load() {
         return new Promise((resolve, reject) => {
-            this._http.get('visuals.json').pipe(  // path of your config.json file
+            this.http.get(this.configUrl).pipe(  // path of your config.json file
                 map(res => res.json()))
                 .subscribe(
                     (data: any) => {
-                        this.langs = data.langs;
+                        // console.log(JSON.stringify(data));
+                        this.langs = JSON.stringify(data);
                         this.langDefault =  data.langDefault;
+                        localStorage.setItem("visualsArray_", JSON.stringify(data));
                         resolve(true);
                     },
                     err => console.log(err)
@@ -25,6 +28,7 @@ export class VisualService {
     }
 
     public getLangs(){
+        console.log("visual.getLangs()")
         return this.langs;
     }
 
