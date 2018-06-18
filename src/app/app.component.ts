@@ -1,54 +1,59 @@
 import { Component, Input } from '@angular/core';
-import { VisualService } from './visual.service';
+import { ConfigService } from './config.service';
 import { Http } from '@angular/http';
 
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  providers: [ConfigService]
 })
-export class AppComponent extends VisualService {
-  title = {};
+export class AppComponent {
+  Name = {};
+  Type = {};
+  Scientific = {};
   visuals = {};
-  lang = "GR";
-  @Input() change: any;
+  lang = "gr";
 
-  constructor(http: Http) {
-    super(http);
-  }  
+  constructor(protected http: Http, protected configService: ConfigService) {
+  }
 
   ngOnInit() {
     console.log('Default Lang: ' + this.lang);
-    // this.getVisuals();
+    this.getInitVisuals();
   }
 
-  ngOnChange() {
-    // this.getLang();
-    console.log('Lang: ' + this.lang);
-    // this.getVisuals();
+  changeLang(lang) {
+    console.log("lang =  " + lang);
+    localStorage.setItem("lang", lang);
+
+    if (lang == 'gr') {
+      this.visuals = JSON.parse(localStorage.getItem('visuals_gr'));
+      console.log('gr' + this.visuals);
+      this.getVisuals();
+    } else if (lang == 'en') {
+      this.visuals = JSON.parse(localStorage.getItem('visuals_en'));
+      console.log('en' + this.visuals);
+      this.getVisuals();
+    }
+
   }
-
-  // getLang(){
-  //   this.lang = localStorage.getItem("lang");
-  //   console.log("this.lang" + this.lang);
-  // }
-
-  changeLang(lang){
-    console.log("lang =  "+lang);
-    localStorage.setItem("lang",lang);
-    this.visuals = this.load();
-    localStorage.setItem("visuals", JSON.stringify(this.visuals));
-    // this.visuals = this.getLangs();
-    console.log("aaaaa"+JSON.stringify(this.visuals));
-    this.title = localStorage.getItem('lang');    
-    // this.title = localStorage.getItem('visuals');    
-    // this.getVisuals();
-  } 
 
   getVisuals() {
     // this.title = localStorage.getItem("ID");
-    this.title = JSON.parse(localStorage.getItem('ID'));
-    console.log('this.title'+this.title);
+    // this.visuals = JSON.parse(localStorage.getItem('visuals_gr'));
+    this.Name = this.visuals['Name'];
+    this.Type = this.visuals['Type'];
+    this.Scientific = this.visuals['Scientific Name'];
+    // this.title = JSON.parse(localStorage.getItem('ID'));
+    // console.log('this.name'+this.Name);
+  }
+
+  getInitVisuals() {
+    this.visuals = JSON.parse(localStorage.getItem('visuals_gr'));
+    this.Name = this.visuals['Name'];
+    this.Type = this.visuals['Type'];
+    this.Scientific = this.visuals['Scientific Name'];
   }
 
 }

@@ -7,12 +7,13 @@
 <body>
     <span>Change Language</span>
     <select (change)="changeLang($event.target.value)">
+        <option value="gr" selected="selected">Gr</option>
         <option value="en">En</option>
-        <option value="gr">Gr</option>
     </select>
     <div>
-        {{visual}}
-        title{{title}}
+        <br> Name {{Name}}
+        <br> Type {{Type}}
+        <br> Scientific {{Scientific}}
     </div>
 </body>
 

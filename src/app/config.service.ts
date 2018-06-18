@@ -3,9 +3,9 @@ import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class VisualService {
+export class ConfigService {
     visuals = {};
-    langDefault:number = 1;
+    langDefault = 'gr';
     configUrl = 'visuals.json';
 
     constructor(private http: Http) { }
@@ -17,22 +17,14 @@ export class VisualService {
                 .subscribe(
                     (data: any) => {
                         // console.log(JSON.stringify(data));
-                        this.visuals = JSON.stringify(data);
-                        this.langDefault =  data.langDefault;
-                        localStorage.setItem("visuals", JSON.stringify(data));
-                        resolve(true);
+                        this.visuals = data;
+                        localStorage.setItem('lang', this.langDefault);
+                        localStorage.setItem('visuals_gr', JSON.stringify(data.gr));
+                        localStorage.setItem('visuals_en', JSON.stringify(data.en));
+                        resolve(this.visuals);
                     },
                     err => console.log(err)
                 );
         });
     }
-
-    // public getLangs(){
-    //     console.log("visual.getLangs()")
-    //     return this.langs;
-    // }
-
-    // public getLangDefault(){
-    //     return this.langDefault;
-    // }
 }
