@@ -1,14 +1,16 @@
 {
-    "gr": {
-        "ID": "001",
-        "Name": "GrGrGr Eurasian Collared-Dove",
-        "Type": "GrGrGr Dove",
-        "Scientific Name": "GrGrGr Streptopelia"
-    },
-    "en": {
-        "ID": "001",
-        "Name": "EnEnEn Eurasian Collared-Dove",
-        "Type": "EnEnEn Dove",
-        "Scientific Name": "EnEnEn Streptopelia"
+    "visuals": {
+        "gr": {
+            "ID": "001",
+            "Name": "GrGrGr Eurasian Collared-Dove",
+            "Type": "GrGrGr Dove",
+            "Scientific Name": "GrGrGr Streptopelia"
+        },
+        "en": {
+            "ID": "001",
+            "Name": "EnEnEn Eurasian Collared-Dove",
+            "Type": "EnEnEn Dove",
+            "Scientific Name": "EnEnEn Streptopelia"
+        }
     }
 }

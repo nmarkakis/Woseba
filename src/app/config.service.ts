@@ -19,8 +19,8 @@ export class ConfigService {
                         // console.log(JSON.stringify(data));
                         this.visuals = data;
                         localStorage.setItem('lang', this.langDefault);
-                        localStorage.setItem('visuals_gr', JSON.stringify(data.gr));
-                        localStorage.setItem('visuals_en', JSON.stringify(data.en));
+                        localStorage.setItem('visuals_gr', JSON.stringify(data.visuals.gr));
+                        localStorage.setItem('visuals_en', JSON.stringify(data.visuals.en));
                         resolve(this.visuals);
                     },
                     err => console.log(err)
